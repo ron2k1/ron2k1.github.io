@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og-card source (screenshot at 1200x630 to regenerate og-card-splash.png)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  .card {
+    width: 1200px; height: 630px;
+    position: relative; overflow: hidden; box-sizing: border-box;
+    background: #fbfaf5;
+    font-family: 'Archivo', sans-serif;
+  }
+  .card * { box-sizing: border-box; }
+
+  /* ---- texture: global ink halftone on the paper zone ---- */
+  .halftone {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(#15151c 1px, transparent 1.2px);
+    background-size: 9px 9px;
+    opacity: 0.05;
+  }
+
+  /* ---- gesture 1: the diagonal split (ink sliver = stroke) ---- */
+  .split { position: absolute; inset: 0; }
+  .split-ink {
+    background: #15151c;
+    clip-path: polygon(54.45% 0, 100% 0, 100% 100%, 75.4% 100%);
+  }
+  .split-red {
+    background-color: #b30e1e;
+    background-image: radial-gradient(rgba(21,21,28,0.32) 1px, transparent 1.2px);
+    background-size: 9px 9px;
+    clip-path: polygon(55% 0, 100% 0, 100% 100%, 76% 100%);
+  }
+
+  /* ---- speed-lines radiating from the burst center (975, 241) ---- */
+  .rays { position: absolute; inset: 0; }
+  .rays-red {
+    background: repeating-conic-gradient(
+      from 0deg at 81.25% 38.25%,
+      rgba(251,250,245,0.09) 0deg 1.5deg, transparent 1.5deg 8deg);
+    clip-path: polygon(55% 0, 100% 0, 100% 100%, 76% 100%);
+  }
+  .rays-paper {
+    background: repeating-conic-gradient(
+      from 0deg at 81.25% 38.25%,
+      rgba(21,21,28,0.06) 0deg 1.5deg, transparent 1.5deg 8deg);
+    clip-path: polygon(0 0, 55% 0, 76% 100%, 0 100%);
+  }
+
+  /* ---- dateline ---- */
+  .dateline {
+    position: absolute; top: 44px; left: 58px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.18em;
+    color: #4a4a58;
+  }
+  .dateline .sq {
+    display: inline-block; width: 10px; height: 10px;
+    background: #e0202f; margin-right: 14px;
+    transform: translateY(1px);
+  }
+
+  /* ---- masthead ---- */
+  .masthead {
+    position: absolute; top: 196px; left: 58px;
+    transform: rotate(-2deg); transform-origin: left center;
+  }
+  .t3d-ink  { color: #15151c; text-shadow: 3px 3px 0 #fbfaf5, 6px 6px 0 rgba(224,32,47,0.45); }
+  .t3d-red  { color: #e0202f; text-shadow: 3px 3px 0 #fbfaf5, 6px 6px 0 #15151c; }
+  .t3d-blue { color: #2342d6; text-shadow: 3px 3px 0 #fbfaf5, 6px 6px 0 #15151c; }
+  .kicker {
+    font-family: 'Bangers', cursive; letter-spacing: 0.02em;
+    font-size: 58px; line-height: 1;
+  }
+  .name {
+    font-family: 'Bangers', cursive; letter-spacing: 0.01em;
+    font-size: 144px; line-height: 0.95;
+    margin-top: 6px; white-space: nowrap;
+  }
+  .chips { margin-top: 34px; display: flex; gap: 16px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; font-weight: 500; letter-spacing: 0.04em;
+    padding: 9px 16px 10px;
+    border: 2.5px solid #15151c;
+    box-shadow: 4px 4px 0 #15151c;
+    white-space: nowrap;
+  }
+  .chip-yellow { background: #ffc400; color: #15151c; }
+  .chip-paper  { background: #f2efe6; color: #15151c; }
+  .chip-blue   { background: #2342d6; color: #fbfaf5; }
+
+  /* ---- gesture 2: the burst star ---- */
+  .burst {
+    position: absolute; left: 800px; top: 66px;
+    width: 350px; height: 350px;
+    transform: rotate(3deg);
+    filter: drop-shadow(4px 4px 0 #15151c);
+  }
+  .burst-ink, .burst-yellow {
+    position: absolute;
+    clip-path: polygon(100% 50%, 81.07% 57.66%, 91.17% 71.63%, 74.34% 68.39%,
+      82.19% 87.6%, 63.8% 79.98%, 59.06% 95.1%, 50% 81%, 39.93% 97.95%,
+      36.93% 79.76%, 17.48% 87.98%, 25.66% 68.39%, 8.1% 70.18%, 17.96% 57.9%,
+      0.53% 51.73%, 19.29% 42.99%, 7.57% 28.65%, 25.69% 29.19%, 22.59% 13.06%,
+      36.29% 22.76%, 37.6% 1.56%, 50.86% 17.01%, 60.35% 4.67%, 62.47% 21.62%,
+      81.54% 13.16%, 75.41% 29.74%, 91.09% 29.32%, 79.85% 43.73%);
+  }
+  .burst-ink    { inset: 0;   background: #15151c; }
+  .burst-yellow { inset: 8px; background: #ffc400; }
+  .burst-text {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    font-family: 'Bangers', cursive; letter-spacing: 0.02em;
+    color: #15151c;
+  }
+  .burst-text .b1 { font-size: 38px; line-height: 1; letter-spacing: 0.1em; }
+  .burst-text .b2 { font-size: 104px; line-height: 0.95; margin-top: 2px; }
+
+  /* ---- bottom ticker ---- */
+  .ticker {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 58px; background: #15151c;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 400; letter-spacing: 0.1em;
+    color: #fbfaf5; white-space: nowrap;
+  }
+  .ticker .url { color: #ffc400; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="halftone"></div>
+  <div class="split split-ink"></div>
+  <div class="split split-red"></div>
+  <div class="rays rays-red"></div>
+  <div class="rays rays-paper"></div>
+
+  <div class="dateline"><span class="sq"></span>NEW BRUNSWICK, NJ * EST. 2023</div>
+
+  <div class="masthead">
+    <div class="kicker t3d-ink">THE INCREDIBLE</div>
+    <div class="name t3d-red">RONIL BASU</div>
+    <div class="chips">
+      <span class="chip chip-yellow">@RON2K1</span>
+      <span class="chip chip-paper">DATA SCIENCE x AI</span>
+      <span class="chip chip-blue">RUTGERS &rsquo;27</span>
+    </div>
+  </div>
+
+  <div class="burst">
+    <div class="burst-ink"></div>
+    <div class="burst-yellow"></div>
+    <div class="burst-text">
+      <div class="b1">ISSUE</div>
+      <div class="b2">#27</div>
+    </div>
+  </div>
+
+  <div class="ticker">AI AGENTS&nbsp;*&nbsp;PREDICTION ENGINES&nbsp;*&nbsp;TOOLS PEOPLE ACTUALLY USE&nbsp;*&nbsp;<span class="url">ron2k1.github.io</span></div>
+</div>
+</body>
+</html>
