@@ -648,19 +648,67 @@ h2 {
 
 .skill-groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 26px;
+}
+
+/* each group is a comic panel; the halftone title band carries its color */
+.skill-group {
+  --sg: var(--red);
+  --sg-text: var(--paper);
+  --sg-dot: rgba(251, 250, 245, 0.2);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: 0 20px 20px;
+}
+
+.sg-frameworks {
+  --sg: var(--blue);
+}
+
+.sg-tools {
+  --sg: var(--yellow);
+  --sg-text: var(--ink);
+  --sg-dot: rgba(21, 21, 28, 0.14);
+}
+
+.sg-ml {
+  --sg: var(--ink);
+  --sg-text: var(--yellow);
+  --sg-dot: rgba(255, 196, 0, 0.16);
 }
 
 .skill-group h3 {
+  margin: 0 -20px 16px;
+  padding: 9px 20px 7px;
+  background:
+    radial-gradient(var(--sg-dot) 1px, transparent 1.6px) 0 0 / 8px 8px,
+    var(--sg);
+  color: var(--sg-text);
+  border-bottom: 3px solid var(--ink);
   font-family: 'Bangers', cursive;
   font-weight: 400;
   font-size: 24px;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.cert-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 30px 0 0;
+  padding: 10px 16px;
+  background: var(--paper-2);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
   letter-spacing: 0.04em;
-  margin: 0 0 14px;
-  border-bottom: 3px solid var(--ink);
-  display: inline-block;
-  padding-bottom: 2px;
 }
 
 /* ---- contact -------------------------------------------------------- */
@@ -847,6 +895,9 @@ h2 {
   }
   html.js .skill-group.reveal.in:nth-child(3) {
     animation-delay: 180ms;
+  }
+  html.js .skill-group.reveal.in:nth-child(4) {
+    animation-delay: 270ms;
   }
 }
 
