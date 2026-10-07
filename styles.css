@@ -582,6 +582,44 @@ h2 {
   color: var(--ink-soft);
 }
 
+/* cover story: spans every column so the six cards under it fill whole rows */
+.card-feature {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: 26px;
+}
+
+.feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.card-feature h3 {
+  font-size: 40px;
+}
+
+.card-feature .feature-copy p:not(.live) {
+  font-size: 16px;
+}
+
+.feature-shot {
+  margin: 0;
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+  background: var(--ink);
+  transform: rotate(0.6deg);
+}
+
+.feature-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ---- experience steps -------------------------------------------- */
 
 .steps {
@@ -922,6 +960,14 @@ h2 {
 
   .stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .card-feature h3 {
+    font-size: 32px;
   }
 
   .marquee-track {
