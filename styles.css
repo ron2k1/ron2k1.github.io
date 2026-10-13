@@ -582,13 +582,34 @@ h2 {
   color: var(--ink-soft);
 }
 
-/* cover story: spans every column so the six cards under it fill whole rows */
+.live a {
+  color: var(--ink);
+  border-bottom: 2px solid var(--yellow);
+  text-decoration: none;
+}
+
+.live a:hover {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+/* cover stories: span every column so the six cards under them fill whole rows */
 .card-feature {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   align-items: center;
   gap: 26px;
+}
+
+/* every other cover puts the shot on the left */
+.card-feature-flip {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+
+.card-feature-flip .feature-shot {
+  order: -1;
+  transform: rotate(-0.6deg);
 }
 
 .feature-copy {
@@ -618,6 +639,27 @@ h2 {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.feature-shot:has(.feature-inset) {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+/* a second panel overlapping the shot's corner, like a comic inset */
+.feature-shot .feature-inset {
+  position: absolute;
+  right: -12px;
+  bottom: -18px;
+  width: 36%;
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+  background: var(--ink);
+  transform: rotate(-2.5deg);
+}
+
+.feature-shot .inset-portrait {
+  width: 24%;
 }
 
 /* ---- experience steps -------------------------------------------- */
@@ -919,6 +961,12 @@ h2 {
   html.js .card.reveal.in:nth-child(7) {
     animation-delay: 420ms;
   }
+  html.js .card.reveal.in:nth-child(8) {
+    animation-delay: 490ms;
+  }
+  html.js .card.reveal.in:nth-child(9) {
+    animation-delay: 560ms;
+  }
   html.js .step.reveal.in:nth-child(2) {
     animation-delay: 90ms;
   }
@@ -962,12 +1010,27 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .card-feature {
+  .card-feature,
+  .card-feature-flip {
     grid-template-columns: 1fr;
+  }
+
+  /* stacked: copy first on every cover, so the flip only applies side by side */
+  .card-feature-flip .feature-shot {
+    order: 0;
   }
 
   .card-feature h3 {
     font-size: 32px;
+  }
+
+  .feature-shot .feature-inset {
+    right: -8px;
+    width: 40%;
+  }
+
+  .feature-shot .inset-portrait {
+    width: 28%;
   }
 
   .marquee-track {
