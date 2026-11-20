@@ -127,7 +127,7 @@
         </div>
         <div class="stats reveal">
           <div class="stat">
-            <div class="num" data-count="15" data-live="repos">15</div>
+            <div class="num" data-count="19" data-live="repos">19</div>
             <div class="lbl">Public Repos</div>
           </div>
           <div class="stat">
@@ -252,8 +252,52 @@
             </figure>
           </article>
 
+          <article class="card card-feature card-feature-flip reveal">
+            <span class="stamp">RUTGERS STATISTICS · ON PYPI · NOV 2026</span>
+            <div class="feature-copy">
+              <div class="badge">ISSUE #04</div>
+              <h3>
+                <a href="https://github.com/ron2k1/datanuggetsflowcytometry">datanuggets</a>
+              </h3>
+              <p>
+                Shrinks a dataset that's too big to cluster into a small set of weighted points.
+                Built for Rutgers statistics research as two Python packages on PyPI, with a flow
+                cytometry app that runs on your own computer in Docker.
+              </p>
+              <div class="chip-row">
+                <span class="chip">Python</span><span class="chip">Numba</span
+                ><span class="chip">FastAPI</span><span class="chip">Docker</span>
+              </div>
+              <p class="live live-links">
+                <a href="https://ron2k1.github.io/datanuggetsflowcytometry/">get the app ▶</a>
+                <a href="https://pypi.org/project/datanuggets-flow/">datanuggets-flow on PyPI</a>
+                <a href="https://pypi.org/project/datanuggets/">datanuggets on PyPI</a>
+              </p>
+              <p class="live" data-repo="datanuggetsflowcytometry">—</p>
+            </div>
+            <figure class="feature-shot">
+              <img
+                src="assets/datanuggets-flow-tsne.webp"
+                width="1280"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                alt="The datanuggets-flow app's plot view: a t-SNE of data nuggets from four public demonstration files, colored by cluster"
+              />
+              <img
+                class="feature-inset"
+                src="assets/datanuggets-flow-3d-dark.webp"
+                width="800"
+                height="500"
+                loading="lazy"
+                decoding="async"
+                alt="The same run as a 3D t-SNE in the app's dark theme"
+              />
+            </figure>
+          </article>
+
           <article class="card reveal">
-            <div class="badge">ISSUE #04</div>
+            <div class="badge">ISSUE #05</div>
             <span class="stamp">2ND PLACE · INTUIT HQ</span>
             <h3>
               <a href="https://github.com/ron2k1/intuit-techweek-smb-underwriting"
@@ -272,7 +316,7 @@
           </article>
 
           <article class="card reveal">
-            <div class="badge">ISSUE #05</div>
+            <div class="badge">ISSUE #06</div>
             <span class="stamp">BEST USE OF ELEVENLABS · HACKUSF 2026</span>
             <h3>StormLink</h3>
             <p>
@@ -286,7 +330,7 @@
           </article>
 
           <article class="card reveal">
-            <div class="badge">ISSUE #06</div>
+            <div class="badge">ISSUE #07</div>
             <h3><a href="https://github.com/ron2k1/marginalia">Marginalia</a></h3>
             <p>
               Turns class PDFs into handwriting-ready notes, each one pinned to the exact
@@ -300,7 +344,7 @@
           </article>
 
           <article class="card reveal">
-            <div class="badge">ISSUE #07</div>
+            <div class="badge">ISSUE #08</div>
             <h3>
               <a href="https://github.com/ron2k1/claude-code-structured-concurrency"
                 >Structured Concurrency</a
@@ -318,7 +362,7 @@
           </article>
 
           <article class="card reveal">
-            <div class="badge">ISSUE #08</div>
+            <div class="badge">ISSUE #09</div>
             <h3><a href="https://github.com/ron2k1/courtside-showcase">Courtside</a></h3>
             <p>Crunches NBA stats to find player bets the sportsbooks priced wrong.</p>
             <div class="chip-row">
@@ -329,7 +373,7 @@
           </article>
 
           <article class="card reveal">
-            <div class="badge">ISSUE #09</div>
+            <div class="badge">ISSUE #10</div>
             <h3><a href="https://github.com/ron2k1/spotify-cleaner">spotify-cleaner</a></h3>
             <p>
               Finds the songs you never play and clears them out of your Spotify library.
@@ -358,18 +402,23 @@
               <p>Statistical computing research in the Dept. of Statistics.</p>
               <ul class="step-bullets">
                 <li>
-                  Rebuilt the datanugget and WCluster R packages in Python for a forthcoming
-                  software paper on data nuggets, which shrink big data to weighted points by
-                  greedy nearest neighbor deletion for k means, hierarchical clustering and PCA.
+                  Ported 17 functions from the datanugget and WCluster R packages to Python and
+                  released them on PyPI as datanuggets, which shrinks big data to weighted points
+                  for k means, hierarchical clustering and PCA.
                 </li>
                 <li>
-                  Replayed R's recorded random draws so unit tests in pytest matched R to 8
-                  significant digits on every deterministic output.
+                  Reimplemented R's set.seed and sample.int in Python so seeded runs match R bit
+                  for bit on the recorded test cases, apart from the eigen solver and the
+                  differences listed in the docs.
                 </li>
                 <li>
-                  Reimplemented Rfast's C++ distance routines in NumPy by copying Armadillo's two
-                  accumulator floating point sums and unstable std::sort tie breaks, so nugget
-                  assignments and weights matched R's exactly, even on tied distances.
+                  Compiled the distance and nugget deletion loops with Numba, so creating nuggets
+                  from the 581,012 row Covertype data takes 21.7 seconds where R takes 184.1.
+                </li>
+                <li>
+                  Built datanuggets-flow on top of the library to cluster flow cytometry files
+                  together, with a command line tool, a Python API and a FastAPI web app shipped
+                  as a Docker image.
                 </li>
               </ul>
             </div>

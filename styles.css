@@ -593,6 +593,17 @@ h2 {
   border-bottom-color: var(--red);
 }
 
+/* several links in one row: each link stays whole and they wrap as units */
+.live-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+
+.live-links a {
+  white-space: nowrap;
+}
+
 /* cover stories: span every column so the six cards under them fill whole rows */
 .card-feature {
   grid-column: 1 / -1;
@@ -966,6 +977,9 @@ h2 {
   }
   html.js .card.reveal.in:nth-child(9) {
     animation-delay: 560ms;
+  }
+  html.js .card.reveal.in:nth-child(10) {
+    animation-delay: 630ms;
   }
   html.js .step.reveal.in:nth-child(2) {
     animation-delay: 90ms;
