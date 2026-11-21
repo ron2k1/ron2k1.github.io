@@ -519,7 +519,8 @@ h2 {
   top: -12px;
   right: 10px;
   z-index: 2;
-  max-width: 62%;
+  /* 150px keeps it clear of the badge in the card's top-left corner, shadow included */
+  max-width: calc(100% - 150px);
   text-align: center;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
@@ -623,6 +624,15 @@ h2 {
 .card-feature-flip .feature-shot {
   order: -1;
   transform: rotate(-0.6deg);
+}
+
+/* side by side, a flipped cover's badge sits top right, so its stamp moves over the screenshot */
+@media (width > 860px) {
+  .card-feature-flip > .stamp {
+    right: auto;
+    left: 10px;
+    max-width: 50%;
+  }
 }
 
 .feature-copy {
