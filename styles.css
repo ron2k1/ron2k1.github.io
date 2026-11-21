@@ -482,9 +482,11 @@ h2 {
 
 /* ---- project cards ---------------------------------------------- */
 
+/* at most two columns (each at least half the row), so the four cards under the covers always fill
+   whole rows: two by two, or one per row once half the row is under 300px */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(max(300px, calc(50% - 13px)), 1fr));
   gap: 26px;
 }
 
@@ -604,7 +606,7 @@ h2 {
   white-space: nowrap;
 }
 
-/* cover stories: span every column so the six cards under them fill whole rows */
+/* cover stories: span every column so the four cards under them fill whole rows */
 .card-feature {
   grid-column: 1 / -1;
   display: grid;
